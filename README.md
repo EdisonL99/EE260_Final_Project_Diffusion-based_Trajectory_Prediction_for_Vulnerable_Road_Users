@@ -1,6 +1,6 @@
 # EE260 Final Project: Diffusion-based Trajectory Prediction for Vulnerable Road Users
 
-Reference: [LED: Leapfrog Diffusion Model for Stochastic Trajectory Prediction](https://github.com/MediaBrain-SJTU/LED)
+Reference: [LED-Leapfrog Diffusion Model for Stochastic Trajectory Prediction](https://github.com/MediaBrain-SJTU/LED)
 
 ## 1. Overview
 

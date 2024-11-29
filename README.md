@@ -8,13 +8,7 @@ Official **PyTorch** code for CVPR'23 paper "Leapfrog Diffusion Model for Stocha
   <img src="./results/fig/overview.png" width = "60%" alt="system overview"/>
 </div>
 
-**Abstract**: To model the indeterminacy of human behaviors, stochastic trajectory prediction requires a sophisticated multi-modal distribution of future trajectories. Emerging diffusion models have revealed their tremendous representation capacities in numerous generation tasks, showing potential for stochastic trajectory prediction. However, expensive time consumption prevents diffusion models from real-time prediction, since a large number of denoising steps are required to assure sufficient representation ability. To resolve the dilemma, we present **LEapfrog Diffusion model (LED)**, a novel diffusion-based trajectory prediction model, which provides  real-time, precise, and diverse predictions. The core of the proposed LED is to leverage a trainable leapfrog initializer to directly learn an expressive multi-modal distribution of future trajectories, which skips a large number of denoising steps, significantly accelerating inference speed. Moreover, the leapfrog initializer is trained to appropriately allocate correlated samples to provide a diversity of predicted future trajectories, significantly improving prediction performances. Extensive experiments on four real-world datasets, including NBA/NFL/SDD/ETH-UCY, show that LED consistently improves performance and achieves **23.7\%/21.9\%** ADE/FDE improvement on NFL. The proposed LED also speeds up the inference **19.3/30.8/24.3/25.1** times compared to the standard diffusion model on NBA/NFL/SDD/ETH-UCY, satisfying real-time inference needs.
-
-<div  align="center">  
-  <img src="./results/fig/mean_var_estimation.png" width = "50%" alt="mean and variance estimation"/>
-</div>
-Here, we present an example (above) to illustrate the mean and variance estimation in the leapfrog initializer under four scenes on the NBA dataset. We see that the variance estimation can well describe the scene complexity for the current agent by the learned variance, showing the rationality of our variance estimation.
-
+**Abstract**: With the development of the diffusion model, more and more interesting scenarios are proposed, e.g., image generation. Also, a few researchers consider generating trajectories using the diffusion model. In the meantime, with the rising attention on the safety issue of VRU, VRU trajectory prediction at the intersection should be further considered. Thus, this final project tries to use the diffusion-based model to predict trajectories of VRU at the intersection scenario, explore the affection of the traffic signals on the performance of the model, and compare the difference of the model’s performance in different VRU objects. As a result, the diffusion-based model can generate satisfactory trajectories, and the traffic signal affects the fast-speed object more.
 
 ## 2. Code Guidance
 
@@ -44,16 +38,6 @@ Overall project structure:
     |----results\ # store the results and checkpoints (~100MB)
     |----visualization\ # some visualization codes
 ```
-
-Please download the data and results from [Google Drive](https://drive.google.com/drive/folders/1Uy8-WvlCp7n3zJKiEX0uONlEcx2u3Nnx?usp=sharing). 
-
-**TODO list**:
-
-- [ ] add training/evaluation for diffusion models (in two weeks).
-- [ ] more detailed descripition in trainers (in one month).
-- [ ] transfer the parameters in models into yaml.
-- [ ] other fast sampling methods (DDIM and PD).
-
 
 ### 2.1. Environment
 We train and evaluate our model on `Ubuntu=18.04` with `RTX 3090-24G`.
@@ -124,34 +108,21 @@ Add Acceleration and Traffic Light Signals to the input feature layers.
 Code need to be modified during running:
 
 trainer/train_led_trajectory_augment_input.py
+
+```
 models/model_led_initializer.py
 models/layers.py
 models/model_diffusion.py
+```
 
-find #changing the mode, with or without light and acceleration
+Find #changing the mode, with or without light and acceleration
 
 #### 2.5.2 Attention Module
 Add a Squeeze-and-Excitation Module to self enhance the important features.
 Code need to be modified during running:
 
+```
 models/model_led_initializer.py
-line 25: #turn on or off the resnet and se module
-
-## 3. Citation
-If you find this code useful for your research, please cite this paper:
-
-```bibtex
-@inproceedings{mao2023leapfrog,
-  title={Leapfrog Diffusion Model for Stochastic Trajectory Prediction},
-  author={Mao, Weibo and Xu, Chenxin and Zhu, Qi and Chen, Siheng and Wang, Yanfeng},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={5517--5526},
-  year={2023}
-}
 ```
 
-## 4. Acknowledgement
-
-Most code is borrowed from [LED] (https://github.com/MediaBrain-SJTU/LED), [MID](https://github.com/Gutianpei/MID), [NPSN](https://github.com/InhwanBae/NPSN) and [GroupNet](https://github.com/MediaBrain-SJTU/GroupNet). We thank the authors for releasing their code.
-
-[![Star History Chart](https://api.star-history.com/svg?repos=MediaBrain-SJTU/LED&type=Date)](https://star-history.com/#MediaBrain-SJTU/LED&Date)
+Line 25: #turn on or off the ResNet and SE module

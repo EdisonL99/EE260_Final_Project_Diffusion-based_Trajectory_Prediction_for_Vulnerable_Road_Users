@@ -97,14 +97,20 @@ We provide pretrained models under the `./checkpoints` folder.
 ```
 
 ### 2.4. Datasets
-We use SinD Dataset to retrain the LED model, then evaluate it.
-So far, we have extracted the data of pedestrian, bicycle, tricycle and motorcycle from SinD and saved them as SinD_7_train_light_p.npy, SinD_5_train_light_b.npy, SinD_20_train_light_t.npy, SinD_3_train_light_m.npy.
-You can load the .npy data in the dataloader_nba.py
-The processed data format is aligned with NBA dataset, which contains 11 agents' continuous 30-frames-length trajectories in a period of time. For the SinD dataset, we have to add blank data into the .npy, because the number of the agents in one frame is fluctuating. The number of the agents will be the largest appeared one during the recorded peroid.
+We use SinD Dataset to retrain evaluate the enhanced LED model.
+
+We have extracted the data of pedestrian, bicycle, tricycle and motorcycle from SinD and saved them as SinD_7_train_light_p.npy, SinD_5_train_light_b.npy, SinD_20_train_light_t.npy, SinD_3_train_light_m.npy.
+
+You can load the .npy data in the dataloader_nba.py. 
+
+The processed data format is aligned with NBA dataset, which contains 11 agents' continuous 30-frames-length trajectories in a period of time. 
+
+For the SinD dataset, we have to add blank data into the .npy, because the number of the agents in one frame is fluctuating. The number of the agents will be the largest appeared one during the recorded peroid.
 
 ### 2.5. Modifications
 #### 2.5.1 Traffic Light Signal
 Add Acceleration and Traffic Light Signals to the input feature layers.
+
 Code need to be modified during running:
 
 trainer/train_led_trajectory_augment_input.py
@@ -119,6 +125,7 @@ Find #changing the mode, with or without light and acceleration
 
 #### 2.5.2 Attention Module
 Add a Squeeze-and-Excitation Module to self enhance the important features.
+
 Code need to be modified during running:
 
 ```

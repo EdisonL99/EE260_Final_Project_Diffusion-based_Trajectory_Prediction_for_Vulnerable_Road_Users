@@ -40,7 +40,7 @@ Overall project structure:
 ```
 
 ### 2.1. Environment
-We train and evaluate our model on `Ubuntu=18.04` with `RTX 3090-24G`.
+We train and evaluate our model on `Ubuntu=22.04` with `RTX 3090-24G`.
 
 Create a new python environment (`led`) using `conda`:
 ```

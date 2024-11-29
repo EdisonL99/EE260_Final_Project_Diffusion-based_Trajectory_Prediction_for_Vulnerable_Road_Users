@@ -1,6 +1,6 @@
 # EE260 Final Project: Diffusion-based Trajectory Prediction for Vulnerable Road Users
 
-Official **PyTorch** code for CVPR'23 paper "Leapfrog Diffusion Model for Stochastic Trajectory Prediction".
+Reference: [LED: Leapfrog Diffusion Model for Stochastic Trajectory Prediction](https://github.com/MediaBrain-SJTU/LED)
 
 ## 1. Overview
 

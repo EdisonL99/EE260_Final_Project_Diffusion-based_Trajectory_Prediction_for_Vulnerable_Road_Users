@@ -29,8 +29,6 @@ Overall project structure:
     |    |----config.py
     |----data\ # preprocessed data (~200MB) and dataloader
     |    |----files\
-    |    |    |----nba_test.npy
-    |    |    |----nba_train.npy
     |    |----dataloader_nba.py
     |----cfg\ # config files
     |    |----nba\

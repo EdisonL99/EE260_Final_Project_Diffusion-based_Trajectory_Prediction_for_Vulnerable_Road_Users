@@ -14,7 +14,7 @@ Modified from: [LED-Leapfrog Diffusion Model for Stochastic Trajectory Predictio
 
 Overall project structure:
 ```text
-----LED\   
+----LED_Modified\   
     |----README.md
     |----requirements.txt # packages to install                    
     |----main_led_nba.py  # [CORE] main file

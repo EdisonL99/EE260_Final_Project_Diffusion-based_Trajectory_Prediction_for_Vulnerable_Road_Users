@@ -22,8 +22,8 @@ def main(config):
 	torch.cuda.empty_cache()
 	if config.train==1:
 		t.fit()
-	else: #changing mode
-		#t.save_data()
+	else: changing mode
+		t.save_data()
 		t.test_single_model()
 
 

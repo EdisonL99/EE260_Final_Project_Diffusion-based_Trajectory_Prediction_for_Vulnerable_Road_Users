@@ -1,8 +1,8 @@
 # EE260 Final Project: Diffusion-based Trajectory Prediction for Vulnerable Road Users
 
-Reference: [LED-Leapfrog Diffusion Model for Stochastic Trajectory Prediction](https://github.com/MediaBrain-SJTU/LED)
+Modified from: [LED-Leapfrog Diffusion Model for Stochastic Trajectory Prediction](https://github.com/MediaBrain-SJTU/LED)
 
-## 1. Overview
+## 1 Overview
 
 <div align="center">  
   <img src="./results/fig/overview.png" width = "60%" alt="system overview"/>
@@ -10,7 +10,7 @@ Reference: [LED-Leapfrog Diffusion Model for Stochastic Trajectory Prediction](h
 
 **Abstract**: With the development of the diffusion model, more and more interesting scenarios are proposed, e.g., image generation. Also, a few researchers consider generating trajectories using the diffusion model. In the meantime, with the rising attention on the safety issue of VRU, VRU trajectory prediction at the intersection should be further considered. Thus, this final project tries to use the diffusion-based model to predict trajectories of VRU at the intersection scenario, explore the affection of the traffic signals on the performance of the model, and compare the difference of the model’s performance in different VRU objects. As a result, the diffusion-based model can generate satisfactory trajectories, and the traffic signal affects the fast-speed object more.
 
-## 2. Code Guidance
+## 2 Gettting Started
 
 Overall project structure:
 ```text
@@ -27,15 +27,23 @@ Overall project structure:
     |----utils\ 
     |    |----utils.py 
     |    |----config.py
-    |----data\ # preprocessed data (~200MB) and dataloader
-    |    |----files\
+    |----data\ # preprocessed data and dataloader
+    |    |----files\ # NBA and preprocessed SinD data
     |    |----dataloader_nba.py
+    |    |----data_process.py # process SinD data
     |----cfg\ # config files
     |    |----nba\
     |    |    |----led_augment.yml
-    |----results\ # store the results and checkpoints (~100MB)
+    |----results\ # store the results and checkpoints
+    |    |----checkpoints\
+    |    |----fig\ #visualization results
+    |    |----led_augment\
     |----visualization\ # some visualization codes
+    |    |----data\ #visualization data
+    |    |----draw_mean_variance.ipynb
 ```
+
+Please download the data and results [here](https://drive.google.com/drive/folders/1ZuOMe68CXrIMK_z_HebsMCIv8FJuzPW4?dmr=1&ec=wgc-drive-globalnav-goto). 
 
 ### 2.1. Environment
 We train and evaluate our model on `Ubuntu=22.04` with `RTX 3090-24G`.
@@ -57,9 +65,7 @@ pip install easydict
 pip install glob2
 ```
 
-
-
-### 2.2. Training
+### 2.2 Training
 
 You can use the following command to start training the initializer.
 ```bash
@@ -71,9 +77,7 @@ python main_led_nba.py --cfg led_augment --gpu 0 --train 1 --info try1
 
 And the results are stored under the `./results` folder.
 
-
-
-### 2.3. Evaluation
+### 2.3 Evaluation
 
 We provide pretrained models under the `./checkpoints` folder.
 
@@ -94,7 +98,7 @@ We provide pretrained models under the `./checkpoints` folder.
 --ADE(4s): 0.0471	--FDE(4s): 0.0720
 ```
 
-### 2.4. Datasets
+### 2.4 Datasets
 We use SinD Dataset to retrain evaluate the enhanced LED model.
 
 We have extracted the data of pedestrian, bicycle, tricycle and motorcycle from SinD and saved them as SinD_7_train_light_p.npy, SinD_5_train_light_b.npy, SinD_20_train_light_t.npy, SinD_3_train_light_m.npy.
@@ -105,7 +109,7 @@ The processed data format is aligned with NBA dataset, which contains 11 agents'
 
 For the SinD dataset, we have to add blank data into the .npy, because the number of the agents in one frame is fluctuating. The number of the agents will be the largest appeared one during the recorded peroid.
 
-### 2.5. Modifications
+### 2.5 Modifications
 #### 2.5.1 Traffic Light Signal
 Add Acceleration and Traffic Light Signals to the input feature layers.
 
@@ -131,3 +135,11 @@ models/model_led_initializer.py
 ```
 
 Line 25: #turn on or off the ResNet and SE module
+
+## 3 Acknowledgement
+
+Most code is modified from [LED](https://github.com/MediaBrain-SJTU/LED), [MID](https://github.com/Gutianpei/MID), [NPSN](https://github.com/InhwanBae/NPSN) and [GroupNet](https://github.com/MediaBrain-SJTU/GroupNet). 
+
+We thank the authors for releasing their code. 
+
+Paper: [CVPR'23 "Leapfrog Diffusion Model for Stochastic Trajectory Prediction"](https://openaccess.thecvf.com/content/CVPR2023/papers/Mao_Leapfrog_Diffusion_Model_for_Stochastic_Trajectory_Prediction_CVPR_2023_paper.pdf)

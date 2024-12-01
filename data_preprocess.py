@@ -91,15 +91,16 @@ def reshape_all_tracks(tracks):
 def padarray(size, array):
     for i in range(len(array)):
         original_array = array[0]
-        target_size = (original_array.shape[0], frame_length, size, 4)  # 想要将数组扩充
+        # expand the array
+        target_size = (original_array.shape[0], frame_length, size, 4)
 
-        # 计算每个维度需要扩充的大小
-        pad_width = [(0, target_size[0] - original_array.shape[0]),  # 行扩充
-                    (0, target_size[1] - original_array.shape[1]), # 列扩充
+        # calculate the size to be expanded for each dimension
+        pad_width = [(0, target_size[0] - original_array.shape[0]),
+                    (0, target_size[1] - original_array.shape[1]),
                     (0, target_size[2] - original_array.shape[2]),
                     (0, target_size[3] - original_array.shape[3])]  
 
-        # 使用numpy.pad函数扩充数组，并用1填充扩充的部分
+        # use the numpy.pad function to expand the array and fill the expanded parts with 1
         padded_array = np.pad(original_array, pad_width, mode='constant', constant_values=1.2255)
         array[i] = padded_array
     return array
@@ -139,24 +140,25 @@ for file in files[:7]:
         testl = testl.replace('\n','')
         datalt.append(testl)
 
-    # 解析数据
+    # parse data
     #pedestrian
     parsed_tracks = parse_data(data, datalt)
     #bycicle
     # parsed_tracks = parse_data_b(data_b, datalt)
 
-    # 整理数据形状
+    # organize the data shape
     reshaped_data = reshape_all_tracks(parsed_tracks)
 
     arr = np.transpose(reshaped_data, (1, 2, 0, 3))
     if arr.shape[2]>size:
         size = arr.shape[2]
     concatenated_array.append(arr)
+    
 #enlarge array
 concatenated_array = padarray(size, concatenated_array)
 arr_transposed = np.concatenate(concatenated_array, axis=0)
 
-# 打印结果
+# print the results
 print("data shape:", reshaped_data.shape)
 print("Reshaped data shape:", arr_transposed.shape)
 print("mean_x", np.sum(arr_transposed[:,:,:,0])/np.sum(arr_transposed[:,:,:,0]!=0))

@@ -21,7 +21,7 @@ Here, we present an example (above) to illustrate the mean and variance estimati
 
 Overall project structure:
 ```text
-----LED\   
+----LED_Modified\   
     |----README.md
     |----requirements.txt # packages to install                    
     |----main_led_nba.py  # [CORE] main file
@@ -34,16 +34,46 @@ Overall project structure:
     |----utils\ 
     |    |----utils.py 
     |    |----config.py
-    |----data\ # preprocessed data (~200MB) and dataloader
-    |    |----files\
-    |    |    |----nba_test.npy
-    |    |    |----nba_train.npy
+    |----data\ # preprocessed data and dataloader
+    |    |----files\ # NBA and preprocessed SinD data
     |    |----dataloader_nba.py
+    |    |----data_process.py # process SinD data
     |----cfg\ # config files
     |    |----nba\
     |    |    |----led_augment.yml
-    |----results\ # store the results and checkpoints (~100MB)
+    |----results\ # store the results and checkpoints
+    |    |----checkpoints\
+    |    |----fig\ #visualization results
+    |    |----led_augment\
     |----visualization\ # some visualization codes
+    |    |----data\ #visualization data
+    |    |----draw_mean_variance.ipynb
+    |----SinD
+    |    |----README.md
+    |    |----Format.md
+    |    |----doc
+    |    |     |----File-Directory.md
+    |    |     |----...
+    |    |---- SIND-Vis-tool
+    |    |     |----utils
+    |    |     |     |---- DataReader.py
+    |    |     |     |---- dict_utils.py
+    |    |     |     |---- map_vis_lanelet2.py
+    |    |     |     |---- map_vis_without_lanelet.py 
+    |    |     |---- VisMain.py
+    |    |     |---- intersection_visualizer.py
+    |    |     |---- requirements.txt
+    |    |     |---- README.md
+    |    |----Data
+    |    |     |---- [recording_day_n] 
+    |    |     |     |---- Ped_smoothed_tracks.csv
+    |    |     |     |---- Ped_tracks_meta.csv
+    |    |     |     |---- TraficLight_[recording_day_n].csv
+    |    |     |     |---- Veh_smoothed_tracks.csv
+    |    |     |     |---- Veh_tracks_meta.csv
+    |    |     |     |---- recoding_metas.csv
+    |    |     |     |---- mapfile.osm
+
 ```
 
 Please download the data and results from [Google Drive](https://drive.google.com/drive/folders/1Uy8-WvlCp7n3zJKiEX0uONlEcx2u3Nnx?usp=sharing). 

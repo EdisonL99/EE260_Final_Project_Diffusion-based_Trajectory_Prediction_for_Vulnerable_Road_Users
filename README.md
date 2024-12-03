@@ -16,7 +16,8 @@ Overall project structure:
 ```text
 ----LED_Modified\   
     |----README.md
-    |----requirements.txt # packages to install                    
+    |----requirements.txt # packages to install
+    |----data_preprocess.py # preprocess the SinD dataset format                      
     |----main_led_nba.py  # [CORE] main file
     |----trainer\ # [CORE] main training files, we define the denoising process HERE!
     |    |----train_led_trajectory_augment_input.py 

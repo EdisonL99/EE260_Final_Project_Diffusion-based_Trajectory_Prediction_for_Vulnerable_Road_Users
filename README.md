@@ -185,6 +185,6 @@ In the visualization, traffic participants (vehicles and pedestrians) are presen
 
 ## 3. Acknowledgement
 
-Most code is borrowed and modified from [SinD](https://github.com/SOTIF-AVLab/SinD) , [LED](https://github.com/MediaBrain-SJTU/LED), [MID](https://github.com/Gutianpei/MID), [NPSN](https://github.com/InhwanBae/NPSN) and [GroupNet](https://github.com/MediaBrain-SJTU/GroupNet). 
+Most code is borrowed and modified from [LED](https://github.com/MediaBrain-SJTU/LED), [SinD](https://github.com/SOTIF-AVLab/SinD), [MID](https://github.com/Gutianpei/MID), [NPSN](https://github.com/InhwanBae/NPSN), and [GroupNet](https://github.com/MediaBrain-SJTU/GroupNet). 
 
 We thank the authors for releasing their code.
